@@ -1,18 +1,20 @@
 <template>
-    {{ userList }}
-    <div>
+    <div v-if:="visibility!=true">
+        <button @click="loginVisibility()">Bilgilerini gir</button>
+    </div>
+
+    <div v-if:="visibility==true">
         <h1>Giriş Sayfası</h1>
         <p><input v-model="email" id="email" email="email" placeholder="kullanıcı adı/email" /></p>
         <p><input v-model="password" id="password" name="password" placeholder="şifre" /></p>
         <button @click="login(email,password)">Giriş</button>
     </div>
 
-
     <!--
         <input v-model.number="quantity" type="number">
         <input v-model.sting="quantity" type="string">
         <button @click="loginVisibility()">Giriş</button>
-        -->
+    -->
 
 
     <!--
@@ -22,7 +24,7 @@
         <input v-model.string="password"type="password" placeholder="şifre">
         <button @click="login(email,password)">Giriş</button>
     </div>
--->
+    -->
 </template>
 
 <script>
@@ -36,6 +38,7 @@
         name: "Login",
         data() {
             return {
+                visibility: false,
             }
         },
         methods: {
@@ -50,17 +53,14 @@
                 }
             },
             loginVisibility: function () {
-                //this.$router.push("/home");
+                this.visibility = !this.visibility;
             },
             login: async function (email, password) {
                 if (email.length > 0 && password.length > 0) {
-                    //const user = await User.findOne({email});
-
                     const userList = await this.fetchUser();
 
                     for (var i = 0; i < userList.length; i++) {
                         if ((userList[i].name == email) && (userList[i].password == password)) {
-                            //this.item = userList[i];
                             this.$router.push("/home");
                         }
                     }
