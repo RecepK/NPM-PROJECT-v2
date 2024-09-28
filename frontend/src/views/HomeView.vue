@@ -18,7 +18,7 @@
         name: "Home",
         data() {
             return {
-                users: []
+                users: [],
             }
         },
         methods: {
@@ -32,7 +32,6 @@
                     console.log(error);
                 }
             }
-
         },
         created() {
             this.fetchUser();
