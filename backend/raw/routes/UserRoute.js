@@ -5,13 +5,7 @@ const router = express.Router();
 
 router
     .route("/user")
-    .get(controller.temp);
-
-/*
-router
-    .route("/user")
-    .get(controller.)
-    .post(controller.);
-*/
+    .get(controller.temp)
+    .post(controller.createUser);
 
 export default router;
