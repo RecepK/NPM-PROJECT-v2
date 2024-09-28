@@ -8,6 +8,7 @@
         <p><input v-model="email" id="email" email="email" placeholder="kullanıcı adı/email" /></p>
         <p><input v-model="password" id="password" name="password" placeholder="şifre" /></p>
         <button @click="login(email,password)">Giriş</button>
+        <button @click="register()">Kayıt Ol</button>
     </div>
 
     <!--
@@ -54,6 +55,9 @@
             },
             loginVisibility: function () {
                 this.visibility = !this.visibility;
+            },
+            register: function () {
+                this.$router.push("/register");
             },
             login: async function (email, password) {
                 if (email.length > 0 && password.length > 0) {
