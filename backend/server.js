@@ -1,10 +1,14 @@
 import express from "express";
 import connectDB from './raw/config/db.js';
 import messageRouter from "./raw/routes/MessageRoute.js";
+import userRouter from "./raw/routes/UserRoute.js";
 import cors from "cors";
 
 const corsOption = {
-    origin: ["http://20.79.181.215", "http://localhost:5173"],
+    origin: [
+        "http://20.79.181.215",
+        "http://localhost:5173"
+    ],
     credential: true
 };
 
@@ -15,6 +19,7 @@ const port = 3000;
 app.use(cors(corsOption));
 app.use(express.json());
 app.use(path, messageRouter);
+app.use(path, userRouter);
 
 try {
     await connectDB();
